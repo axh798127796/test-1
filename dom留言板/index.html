@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;list-style: none;}
+			textarea{width: 300px;height: 150px;resize:none;}
+			#list li{width: 300px;border-bottom: solid 1px red;padding: 6px;}
+			a{float: right;}
+		</style>
+	</head>
+	<body>
+
+		<textarea maxlength="30"placeholder="最多输入30字"></textarea><br />
+		<button class="add">发表</button>
+		<ul id="list">
+			<li>
+				<a href="#">删除</a><p>发送内容</p>
+				<section>2019-07-08</section>
+			</li>
+		</ul>
+		<script>
+			if(localStorage.newArr){
+				var newArr=localStorage.newArr;
+				var arr=JSON.parse(newArr);
+			}else{
+				var arr=[];
+			}
+			
+			var add=document.querySelector('.add');
+			var ul=document.getElementById('list');
+			add.onclick=function(){
+				var txt=document.querySelector('textarea');
+				var val=txt.value;
+				var obj={val:val,timer:d}
+				
+			if(localStorage.newArr){
+				var newArr=localStorage.newArr;
+				var arr=JSON.parse(newArr);
+			}else{
+				var arr=[];
+			}
+			
+			if(arr.length==0){
+				arr.push(obj);
+			}
+			var newArr=JSON.stringify(arr);
+			localStorage.newArr=newArr;
+			fn();
+			}
+			function fn1(arr){
+				if (val) {
+					var d=new Date().toLocaleString();
+
+					ul.innerHTML+='<li><a href="#">删除</a><p>'+obj.val+'</p><section>'+obj.timer+'</section></li>';
+					txt.value='';
+				} else{
+					alert('请输入内容'); 				
+				}
+			}
+			
+			
+			function fn(){
+				var a=document.getElementsByTagName('a');
+				for (var i=0;i<a.length;i++) {
+					a[i].onclick=function(){
+						this.parentNode.remove();
+					}
+				}
+			}
+			fn();
+		</script>
+	</body>
+</html>
